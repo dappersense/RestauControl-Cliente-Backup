@@ -258,7 +258,15 @@ public class GestionarListaPedidos : MonoBehaviour
         {
             str2 += match;
         }
-        int idMesa = int.Parse(str2);
+        int idMesa = 0;
+        try
+        {
+            idMesa = int.Parse(str2);
+        }
+        catch(Exception e)
+        {
+            idMesa = 0;
+        }
         crearBotonesPedidos(idMesa);
     }
 

@@ -129,7 +129,7 @@ public class GestionarFacturasController : MonoBehaviour
             string cad3 = await instanceMétodosApiController.GetDataAsync("articulo/getArticulo/" + a.idArticulo);
             Debug.Log(cad3);
             Articulo aux= JsonConvert.DeserializeObject<Articulo>(cad3);
-            string nombre = aux.nombre + "\n";
+            string nombre = aux.nombre;
             ID.text = ID.text + a.idArticulo + "\n";
             Descripcion.text = Descripcion.text + nombre+"\n";
             Cantidad.text = Cantidad.text +a.cantidad+ "\n";
