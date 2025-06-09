@@ -32,6 +32,7 @@ public class MainController : MonoBehaviour
     [SerializeField] private GameObject canvasVídeoTutorialApp;
     [SerializeField] private VideoClip videoClipEmpleado;
     [SerializeField] private VideoClip videoClipGerente;
+    [SerializeField] private VideoClip videoClipGerenteUnaVezCreadoElRestaurante;
     [SerializeField] private Image imgBtnOnYPausa;
     [SerializeField] private Sprite imgPausa;
     [SerializeField] private Sprite imgPlay;
@@ -317,7 +318,14 @@ public class MainController : MonoBehaviour
             }
             else
             {
-                vp.clip = videoClipGerente;
+                if (botónGestionarMesas.IsActive())
+                {
+                    vp.clip = videoClipGerenteUnaVezCreadoElRestaurante;
+                }
+                else
+                {
+                    vp.clip = videoClipGerente;
+                }                    
             }
         }
         
