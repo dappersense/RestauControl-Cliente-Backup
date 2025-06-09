@@ -47,7 +47,7 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
         // Defino la posición de spawn (centro del contenedor)
         Vector2 spawnPos = Vector2.zero;
 
-        // Definir el tamaño predeterminado del botón (en este ejemplo 100x50)
+        // Defino el tamaño predeterminado del botón (180x100)
         Vector2 defaultSize = new Vector2(180, 100);
 
         // Creo un Rect que representaría el área del nuevo botón
@@ -56,7 +56,7 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
         // Compruebo si en la posición de spawn ya hay un botón (que se solape)
         ButtonMesaController[] buttons = containerRect.GetComponentsInChildren<ButtonMesaController>();
 
-        // Revisar si ya hay un botón en la zona central
+        // Reviso si ya hay un botón en la zona central
         foreach (ButtonMesaController btn in buttons)
         {
             if (btn.rectTransform == null)
@@ -88,40 +88,6 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
         instanceEditarRestauranteController.GetButtonAñadirMesa().interactable = false;
         Debug.Log("Es null?: " + instanceEditarRestauranteController.GetContenedorAsignarComensales());
         instanceEditarRestauranteController.GetContenedorAsignarComensales().SetActive(true);
-        // Gestionar cantidad de comensales a la mesa
-        //instanceEditarRestauranteController.GestionarCrearNuevoBotón();
-        /*
-        // Crear un nuevo GameObject para el botón
-        GameObject newButtonObj = new GameObject("Button");
-        // El nuevo botón se creará como hijo del contenedor, NO del Canvas
-        newButtonObj.transform.SetParent(containerRect, false);
-
-        // Agregar y configurar el RectTransform: posición central y tamaño predeterminado
-        RectTransform newRect = newButtonObj.AddComponent<RectTransform>();
-        newRect.anchoredPosition = Vector2.zero;
-        newRect.sizeDelta = new Vector2(180, 100); // Ejemplo de tamaño
-
-        // Agregar un Image y cargar la imagen desde Resources (incluyendo la subcarpeta si es necesario)
-        Image img = newButtonObj.AddComponent<Image>();
-        // Si la imagen está en "Assets/Resources/Editar Restaurante/Mantel Mesa.png", se carga así:
-        Sprite newSprite = Resources.Load<Sprite>("Editar Restaurante/" + ImageName);
-        if (newSprite != null)
-        {
-            img.sprite = newSprite;
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró la imagen en Resources: " + ImageName);
-        }
-
-        // Agrego un componente Button para que sea interactivo
-        newButtonObj.AddComponent<Button>();
-
-        // Agrego este script al nuevo botón para dotarlo de funcionalidad de arrastre y escala
-        ButtonMesaController bm = newButtonObj.AddComponent<ButtonMesaController>();
-        bm.containerRect = this.containerRect;  // Asigna el mismo contenedor
-        bm.rectTransform = newRect;              // Asigna el RectTransform del nuevo botón
-        */
     }
 
     // Detecta cuando se presiona el botón (inicia el arrastre)
@@ -134,7 +100,7 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
             return; // Salgo si el botón no es interactuable
         }
 
-        // Verificar si este objeto es hijo del contenedorPadre
+        // Verifica si este objeto es hijo del contenedorPadre
         if (transform.parent != containerRect.transform)
         {
             Debug.Log("Este botón no es hijo del contenedor permitido.");
@@ -160,7 +126,7 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
             //Debug.Log("Botón marcado: " + gameObject.name);
 
             instanceEditarRestauranteController.ActivarPapelera();
-            // (Opcional) Aquí puedes cambiar el color o aplicar alguna animación para indicar selección.
+            
             isDragging = false; // No queremos que inicie un arrastre con clic derecho.
             return;
         }
@@ -234,7 +200,7 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
         TMP_SelectionCaret caret = inputFieldInstance.GetComponentInChildren<TMP_SelectionCaret>();
         if (caret != null)
         {
-            // Desactivamos raycastTarget del Caret
+            // Desactivo raycastTarget del Caret
             caret.raycastTarget = false;
         }
         else
@@ -336,16 +302,16 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
             float scaleChange = eventData.scrollDelta.y * 0.1f;
             Vector3 newScale = rectTransform.localScale + new Vector3(scaleChange, scaleChange, 0);
 
-            // Definir los límites de escala
+            // Defino los límites de escala
             newScale.x = Mathf.Clamp(newScale.x, 1f, 3f);
             newScale.y = Mathf.Clamp(newScale.y, 1f, 3f);
             newScale.z = 1;
 
-            // Calculamos el tamaño del botón con la nueva escala
+            // Calculo el tamaño del botón con la nueva escala
             Vector2 newSize = rectTransform.rect.size * newScale;
             Vector2 newPos = rectTransform.anchoredPosition;
 
-            // Verificamos si cabe dentro del contenedor
+            // Verifico si cabe dentro del contenedor
             Vector2 halfContainer = containerRect.rect.size * 0.5f;
             Vector2 halfButton = newSize * 0.5f;
 
@@ -355,10 +321,10 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
                 newPos.y - halfButton.y >= -halfContainer.y &&
                 newPos.y + halfButton.y <= halfContainer.y;
 
-            // Verificar si el nuevo tamaño causaría superposición con otro botón
+            // Verifica si el nuevo tamaño causaría superposición con otro botón
             bool overlapsWithOther = WillOverlapWithSize(newSize);
 
-            // Si cabe dentro del contenedor y no se superpone con otro botón, aplicar la nueva escala
+            // Si cabe dentro del contenedor y no se superpone con otro botón, aplico la nueva escala
             if (fitsInside && !overlapsWithOther)
             {
                 rectTransform.localScale = newScale;
@@ -402,7 +368,7 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
         Vector2 mySize = rectTransform.rect.size * rectTransform.localScale;
         Rect myRect = new Rect(newPos - mySize / 2f, mySize);
 
-        // Obtener todos los ButtonMesaController hijos del contenedor
+        // Obtengo todos los ButtonMesaController hijos del contenedor
         ButtonMesaController[] buttons = containerRect.GetComponentsInChildren<ButtonMesaController>();
         foreach (ButtonMesaController btn in buttons)
         {
@@ -425,11 +391,11 @@ public class ButtonMesaController : MonoBehaviour, IPointerDownHandler, IDragHan
         if (rectTransform == null)
             return false;
 
-        // Calcula el rectángulo del botón con el nuevo tamaño
+        // Calculo el rectángulo del botón con el nuevo tamaño
         Vector2 myPosition = rectTransform.anchoredPosition;
         Rect myRect = new Rect(myPosition - newSize / 2f, newSize);
 
-        // Obtener todos los botones dentro del contenedor
+        // Obtengo todos los botones dentro del contenedor
         ButtonMesaController[] buttons = containerRect.GetComponentsInChildren<ButtonMesaController>();
         foreach (ButtonMesaController btn in buttons)
         {
