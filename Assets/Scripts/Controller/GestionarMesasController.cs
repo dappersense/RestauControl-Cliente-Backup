@@ -1259,26 +1259,56 @@ public class GestionarMesasController : MonoBehaviour
 
         if (Usuario.Idioma.CompareTo("Español") == 0)
         {
-            // Si el cliente tiene un número de teléfono registrado en la BDD
-            if (reserva.Cliente.NumTelefono.Trim().Length > 0)
+            if (reserva.CantComensales > 9)
             {
-                textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "           " + reserva.CantComensales + "          " + reserva.Cliente.NumTelefono + "    " + reserva.Cliente.Nombre;
+                // Si el cliente tiene un número de teléfono registrado en la BDD
+                if (reserva.Cliente.NumTelefono.Trim().Length > 0)
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "           " + reserva.CantComensales + "        " + reserva.Cliente.NumTelefono + "    " + reserva.Cliente.Nombre;
+                }
+                else // El cliente no tiene ningún número de teléfono registrado
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "           " + reserva.CantComensales + "                            " + reserva.Cliente.Nombre;
+                }
             }
-            else // El cliente no tiene ningún número de teléfono registrado
+            else
             {
-                textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "           " + reserva.CantComensales + "                              " + reserva.Cliente.Nombre;
-            }
+                // Si el cliente tiene un número de teléfono registrado en la BDD
+                if (reserva.Cliente.NumTelefono.Trim().Length > 0)
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "           " + reserva.CantComensales + "          " + reserva.Cliente.NumTelefono + "    " + reserva.Cliente.Nombre;
+                }
+                else // El cliente no tiene ningún número de teléfono registrado
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "           " + reserva.CantComensales + "                              " + reserva.Cliente.Nombre;
+                }
+            }            
         }
         else
         {
-            // Si el cliente tiene un número de teléfono registrado en la BDD
-            if (reserva.Cliente.NumTelefono.Trim().Length > 0)
+            if (reserva.CantComensales > 9)
             {
-                textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "          " + reserva.CantComensales + "         " + reserva.Cliente.NumTelefono + "     " + reserva.Cliente.Nombre;
+                // Si el cliente tiene un número de teléfono registrado en la BDD
+                if (reserva.Cliente.NumTelefono.Trim().Length > 0)
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "          " + reserva.CantComensales + "       " + reserva.Cliente.NumTelefono + "     " + reserva.Cliente.Nombre;
+                }
+                else // El cliente no tiene ningún número de teléfono registrado
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "          " + reserva.CantComensales + "                            " + reserva.Cliente.Nombre;
+                }
             }
-            else // El cliente no tiene ningún número de teléfono registrado
+            else
             {
-                textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "          " + reserva.CantComensales + "                              " + reserva.Cliente.Nombre;
+                // Si el cliente tiene un número de teléfono registrado en la BDD
+                if (reserva.Cliente.NumTelefono.Trim().Length > 0)
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "          " + reserva.CantComensales + "         " + reserva.Cliente.NumTelefono + "     " + reserva.Cliente.Nombre;
+                }
+                else // El cliente no tiene ningún número de teléfono registrado
+                {
+                    textoBotón.text = "  " + reserva.Fecha + "    " + reserva.Hora + "          " + reserva.CantComensales + "                              " + reserva.Cliente.Nombre;
+                }
             }
         }        
     }
