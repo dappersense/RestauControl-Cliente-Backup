@@ -76,12 +76,12 @@ public class ImageManager : MonoBehaviour
             Debug.Log("Imagen subida correctamente al artículo");
     }
 
-    public void DownloadImage(int i)
+    public void DownloadImage(int i,RawImage raw)
     {
-        StartCoroutine(DownloadCoroutine(i));
+        StartCoroutine(DownloadCoroutine(i,raw));
     }
 
-    private IEnumerator DownloadCoroutine(int i)
+    private IEnumerator DownloadCoroutine(int i,RawImage raw)
     {
         Debug.Log("Iniciamos");
         using UnityWebRequest www = UnityWebRequestTexture.GetTexture(downloadUrl+i);
@@ -90,7 +90,7 @@ public class ImageManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             Texture2D texture = DownloadHandlerTexture.GetContent(www);
-            imageDisplay.texture = texture;
+            raw.texture = texture;
         }
         else
         {

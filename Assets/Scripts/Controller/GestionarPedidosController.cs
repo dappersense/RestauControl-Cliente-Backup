@@ -14,8 +14,7 @@ using System.Text.RegularExpressions;
 //SI ES POSIBLE, PANTALLA PARA AÑADIR ARTÍCULOS A LA BASE DE DATOS
 //IMÁGENES
 /*
- * Solo se muestra una imagen de articulos???
- * Cambiar categoría por un dropdown
+ * Comprobar imágenes en pedidos
 */
 public class GestionarPedidosController : MonoBehaviour
 {
@@ -166,7 +165,7 @@ public class GestionarPedidosController : MonoBehaviour
             Debug.Log("Cadena imagen:"+cad);
             bool resultado = JsonConvert.DeserializeObject<bool>(cad);
             if (!resultado) throw new Exception("No tiene imagen");
-            instanceImage.DownloadImage(a.id);
+            instanceImage.DownloadImage(a.id,imagenRAW);
         }
         catch (Exception e)
         {

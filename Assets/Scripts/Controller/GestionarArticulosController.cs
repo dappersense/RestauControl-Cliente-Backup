@@ -308,7 +308,7 @@ public class GestionarArticulosController : MonoBehaviour
             Debug.Log(cad);
             bool resultado = JsonConvert.DeserializeObject<bool>(cad);
             if (!resultado) throw new Exception("No tiene imagen");
-            instanceImage.DownloadImage(articuloSeleccionado.id);
+            instanceImage.DownloadImage(articuloSeleccionado.id,imagenRAW);
         }
         catch (Exception e)
         {
@@ -319,6 +319,6 @@ public class GestionarArticulosController : MonoBehaviour
     public void subirImagen()
     {
         instanceImage.OpenFileAndUpload(articuloSeleccionado.id);
-        cargarImagenAux();
+        cargarImagen();
     }
 }
