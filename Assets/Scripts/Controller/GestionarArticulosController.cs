@@ -12,6 +12,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System.Buffers.Text;
+using System.IO;
+using UnityEngine.Networking;
 //SI ES POSIBLE, PANTALLA PARA AÑADIR ARTÍCULOS A LA BASE DE DATOS
 //IMÁGENES
 public class GestionarArticulosController : MonoBehaviour
@@ -32,15 +34,20 @@ public class GestionarArticulosController : MonoBehaviour
     public TextMeshProUGUI AID;
     public TextMeshProUGUI tBoton;
     public Articulo articuloSeleccionado;
+    public RawImage imagenRAW;
+    //public ImageDownloader instanceDownloader;
     void Start()
     {
         instanceMétodosAPIController = MétodosAPIController.InstanceMétodosAPIController;
         SceneManager.LoadSceneAsync("General Controller", LoadSceneMode.Additive);
+        //instanceDownloader=ImageDownloader.instanceDownloader;
+        //instanceDownloader.DownloadImage();
         cargarLista();
     }
     void Awake()
     {
         instanceMétodosAPIController = MétodosAPIController.InstanceMétodosAPIController;
+        //instanceDownloader = ImageDownloader.instanceDownloader;
     }
     public void volver()
     {
@@ -67,7 +74,7 @@ public class GestionarArticulosController : MonoBehaviour
         setNombre.text = ""+a.nombre;
         setPrecio.text = ""+a.precio;
         setCategoria.text = ""+a.categoria;
-        AID.text = ""+a.id;
+        AID.text = "Articulo "+a.id;
         articuloSeleccionado = a;
         ventanaModificar.SetActive(true);
         botonModificar.SetActive(true);
@@ -178,11 +185,11 @@ public class GestionarArticulosController : MonoBehaviour
     public async Task crearArticulo()
     {
         string cad = await instanceMétodosAPIController.GetDataAsync("articulo/maxID/");
-        int aID = JsonConvert.DeserializeObject<int>(cad)+1;
+        int IDA = JsonConvert.DeserializeObject<int>(cad)+1;
         string nombre = setNombre.text;
         float precio = float.Parse(setPrecio.text);
         string categoria=setCategoria.text;
-        Articulo a = new Articulo(aID, nombre, precio, categoria);
+        Articulo a = new Articulo(IDA, nombre, precio, categoria);
         string cad2 = await instanceMétodosAPIController.PostDataAsync("articulo/crearArticulo/",a);
         Debug.Log(cad2);
         Resultado resultado = JsonConvert.DeserializeObject<Resultado>(cad2);
@@ -197,11 +204,11 @@ public class GestionarArticulosController : MonoBehaviour
     }
     public async Task modificarArticulo()
     {
-        int aID = articuloSeleccionado.id;
+        int IDA = articuloSeleccionado.id;
         string nombre = setNombre.text;
         float precio = float.Parse(setPrecio.text);
         string categoria = setCategoria.text;
-        Articulo a = new Articulo(aID, nombre, precio, categoria);
+        Articulo a = new Articulo(IDA, nombre, precio, categoria);
         string cad = await instanceMétodosAPIController.PutDataAsync("articulo/modificar/", a);
         Debug.Log(cad);
         Resultado resultado = JsonConvert.DeserializeObject<Resultado>(cad);
@@ -261,4 +268,5 @@ public class GestionarArticulosController : MonoBehaviour
     {
         cargarLista(selNombre.text);
     }
+    
 }
