@@ -1,4 +1,4 @@
-using Assets.Scripts.Controller;
+ï»¿using Assets.Scripts.Controller;
 using Assets.Scripts.Model;
 using Newtonsoft.Json;
 using System;
@@ -21,7 +21,7 @@ public class GestionarListaPedidos : MonoBehaviour
     public GameObject canvasMesas;
     public GameObject canvasLista;
     public GameObject canvasPedidos;
-    public MétodosAPIController instanceMétodosApiController;
+    public MÃ©todosAPIController instanceMÃ©todosApiController;
     public GestionarPedidosController instanceGestionarPedidosController;
     public GestionarMesasController instanceGestionarMesasController;
     public TextMeshProUGUI selMesa;
@@ -29,11 +29,11 @@ public class GestionarListaPedidos : MonoBehaviour
     public Transform espacio;
     public Scrollbar scrollbarLista;
     public static GestionarListaPedidos InstanceGestionarListaPedidos { get; private set; }
-    //Debería haber una barra de scroll para explorar los pedidos
+    //Deberï¿½a haber una barra de scroll para explorar los pedidos
 
     void Start()
     {
-        instanceMétodosApiController = MétodosAPIController.InstanceMétodosAPIController;
+        instanceMÃ©todosApiController = MÃ©todosAPIController.InstanceMÃ©todosAPIController;
         instanceGestionarPedidosController = GestionarPedidosController.instanceGestionarPedidosController;
         if (InstanceGestionarListaPedidos == null)
         {
@@ -46,10 +46,10 @@ public class GestionarListaPedidos : MonoBehaviour
 
     /*public void buscarPorFiltro()
     {
-        //esto debería pillar de MesaFiltro
+        //esto deberï¿½a pillar de MesaFiltro
         crearBotonesPedidos(0);
     }*/
-    //esto debería tener un order by que empezara desde el ID más alto
+    //esto deberï¿½a tener un order by que empezara desde el ID mï¿½s alto
     public async Task crearBotonesPedidos(int mesa)
     {
         foreach (Transform t in espacio.transform)
@@ -59,17 +59,17 @@ public class GestionarListaPedidos : MonoBehaviour
         }
         //LimpiarBotones();
         List<Pedido> lista;
-        
-        string cad = await instanceMétodosApiController.GetDataAsync("pedido/getTodosPedidos/");
-        Debug.Log("CADENA:"+cad);
+
+        string cad = await instanceMÃ©todosApiController.GetDataAsync("pedido/getTodosPedidos/");
+        Debug.Log("CADENA:" + cad);
         lista = JsonConvert.DeserializeObject<List<Pedido>>(cad);
         int i = 0;
         foreach (Pedido p in lista)
         {
-            if (mesa == null || mesa == 0|| p.mesa == mesa)
+            if (mesa == null || mesa == 0 || p.mesa == mesa)
             {
                 crearBoton(p, i);
-                Debug.Log("Creado botón: " + p.id);
+                Debug.Log("Creado botï¿½n: " + p.id);
                 i++;
             }
         }
@@ -84,28 +84,28 @@ public class GestionarListaPedidos : MonoBehaviour
         //LimpiarBotones();
         List<Pedido> lista;
 
-        string cad = await instanceMétodosApiController.GetDataAsync("pedido/getTodosPedidos/");
+        string cad = await instanceMÃ©todosApiController.GetDataAsync("pedido/getTodosPedidos/");
         Debug.Log("CADENA:" + cad);
         lista = JsonConvert.DeserializeObject<List<Pedido>>(cad);
         int i = 0;
         foreach (Pedido p in lista)
         {
-            if (estado==null || estado.ToUpper().Equals(p.estado) || estado.ToUpper().Equals(""))
+            if (estado == null || p.estado.ToUpper().Contains(estado.ToUpper()) || estado.ToUpper().Equals(""))
             {
                 crearBoton(p, i);
-                Debug.Log("Creado botón: " + p.id);
+                Debug.Log("Creado botï¿½n: " + p.id);
                 i++;
             }
         }
     }
-    
+
     /*public void crearBoton(Pedido p, int num)
     {
         GameObject botonP = Instantiate(baseP, fondoPedidos, true);
         botonP.transform.position = new Vector2(950, 820 - num * 150);
         botonP.transform.SetParent(fondoPedidos);
         //botonP.AddComponent<CanvasRenderer>();
-        // Crear un GameObject para el botón y asignarle un nombre único.
+        // Crear un GameObject para el botï¿½n y asignarle un nombre ï¿½nico.
         botonP.name = "Pedido-" + p.id;
         GameObject tit = botonP.transform.Find("NumPedido").gameObject;
         TextMeshProUGUI texto = tit.GetComponent<TextMeshProUGUI>();
@@ -135,22 +135,22 @@ public class GestionarListaPedidos : MonoBehaviour
         Button del = eliminar.AddComponent<Button>();
         del.onClick.AddListener(() => eliminarPedido(p.id));
 
-        //modificar.GetComponent<Button>().onClick = () => { Debug.Log("Botón accedido correctamente"); };
+        //modificar.GetComponent<Button>().onClick = () => { Debug.Log("Botï¿½n accedido correctamente"); };
     }*/
-    public void crearBoton(Pedido p,int num)
+    public void crearBoton(Pedido p, int num)
     {
         instanceGestionarMesasController = GestionarMesasController.InstanceGestionarMesasController;
         GameObject botonP = Instantiate(baseP, fondoPedidos, true);
-        botonP.transform.position = new Vector2(950, 820-num*150);
+        botonP.transform.position = new Vector2(950, 820 - num * 150);
         botonP.transform.SetParent(fondoPedidos);
         //botonP.AddComponent<CanvasRenderer>();
-        // Crear un GameObject para el botón y asignarle un nombre único.
+        // Crear un GameObject para el botï¿½n y asignarle un nombre ï¿½nico.
         botonP.name = "Pedido-" + p.id;
         GameObject tit = botonP.transform.Find("NumPedido").gameObject;
         TextMeshProUGUI texto = tit.GetComponent<TextMeshProUGUI>();
-        GameObject fecha= botonP.transform.Find("Fecha").gameObject;
+        GameObject fecha = botonP.transform.Find("Fecha").gameObject;
         TextMeshProUGUI textoF = fecha.GetComponent<TextMeshProUGUI>();
-        if (Usuario.Idioma.CompareTo("Español") == 0)
+        if (Usuario.Idioma.CompareTo("Espaï¿½ol") == 0)
         {
             texto.text = "Pedido " + p.id;
             textoF.text = "Mesa " + instanceGestionarMesasController.getNumMesa(p.mesa);
@@ -160,7 +160,7 @@ public class GestionarListaPedidos : MonoBehaviour
             texto.text = "Order " + p.id;
             textoF.text = "Table " + instanceGestionarMesasController.getNumMesa(p.mesa);
         }
-        /*if (Usuario.Idioma.CompareTo("Español") == 0)
+        /*if (Usuario.Idioma.CompareTo("Espaï¿½ol") == 0)
         {
             texto.text = "Pedido " + p.id;
             textoF.text = "Mesa " + instanceGestionarMesasController.getNumMesa(p.mesa);
@@ -183,7 +183,7 @@ public class GestionarListaPedidos : MonoBehaviour
             drop.value = 3;
         else drop.value = 4;
 
-        if (Usuario.Idioma.CompareTo("Español") != 0)
+        if (Usuario.Idioma.CompareTo("Espaï¿½ol") != 0)
         {
             drop.options[0].text = "REGISTERED";
             drop.options[1].text = "INKITCHEN";
@@ -211,9 +211,9 @@ public class GestionarListaPedidos : MonoBehaviour
         GameObject delIMG = eliminar.transform.Find("Image").gameObject;
         GameObject delTexto = delIMG.transform.Find("Text (TMP)").gameObject;
         TextMeshProUGUI textoDel = delTexto.GetComponent<TextMeshProUGUI>();
-        if (Usuario.Idioma.CompareTo("Español") != 0)
+        if (Usuario.Idioma.CompareTo("Espaï¿½ol") != 0)
         {
-            Debug.Log("Debería traducirse");
+            Debug.Log("Deberï¿½a traducirse");
             textoMod.text = "Modify";
             textoDel.text = "Delete";
         }
@@ -232,9 +232,9 @@ public class GestionarListaPedidos : MonoBehaviour
         TextMeshProUGUI textoDel = eliTexto.GetComponent<TextMeshProUGUI>();
 
 
-        if (Usuario.Idioma.CompareTo("Español") !=0)
+        if (Usuario.Idioma.CompareTo("Espaï¿½ol") !=0)
         {
-            Debug.Log("Debería traducirse");
+            Debug.Log("Deberï¿½a traducirse");
             textoMod.text = "Modify";
             textoDel.text = "Delete";
         }
@@ -247,7 +247,7 @@ public class GestionarListaPedidos : MonoBehaviour
         del.onClick.AddListener(() => eliminarPedido(p.id));
         
         */
-        //modificar.GetComponent<Button>().onClick = () => { Debug.Log("Botón accedido correctamente"); };
+        //modificar.GetComponent<Button>().onClick = () => { Debug.Log("Botï¿½n accedido correctamente"); };
     }
 
     public void auxFiltro()
@@ -263,7 +263,7 @@ public class GestionarListaPedidos : MonoBehaviour
         {
             idMesa = int.Parse(str2);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             idMesa = 0;
         }
@@ -281,20 +281,20 @@ public class GestionarListaPedidos : MonoBehaviour
         GameObject botonGO = Instantiate(baseP, fondoPedidos, true);
         botonGO.transform.SetParent(fondoPedidos);
         botonGO.AddComponent<CanvasRenderer>();
-        // Crear un GameObject para el botón y asignarle un nombre único.
+        // Crear un GameObject para el botï¿½n y asignarle un nombre ï¿½nico.
         botonGO.name = "Pedido-" + 1;
         // Referencias de componentes
 
 
         //PonerListenerADropdown(dropdown);
         /*
-        // Crear un GameObject para el botón y asignarle un nombre único.
+        // Crear un GameObject para el botï¿½n y asignarle un nombre ï¿½nico.
         GameObject botonGO = new GameObject("Button-" + trabajador.Id);
 
         // Establecer el padre para que se muestre en el UI.
         botonGO.transform.SetParent(rtScrollViewContent, false);
 
-        // Agregar el componente RectTransform (se agrega automáticamente al crear UI, pero lo añadimos explícitamente).
+        // Agregar el componente RectTransform (se agrega automï¿½ticamente al crear UI, pero lo aï¿½adimos explï¿½citamente).
         RectTransform rt = botonGO.AddComponent<RectTransform>();
 
         // Agregar CanvasRenderer para poder renderizar el UI.
@@ -306,15 +306,15 @@ public class GestionarListaPedidos : MonoBehaviour
         // Agrego un componente Button para que sea interactivo
         botonGO.AddComponent<Button>();
 
-        // Creo un nuevo GameObject hijo, el texto del botón
+        // Creo un nuevo GameObject hijo, el texto del botï¿½n
         CrearTextoDelButton(rt, trabajador);
         
 
 
     }*/
-    public async Task cambiarEstadoPedido(Pedido p,string s)
+    public async Task cambiarEstadoPedido(Pedido p, string s)
     {
-        string aux=s;
+        string aux = s;
         if (s.Equals("REGISTERED"))
         {
             aux = "APUNTADO";
@@ -336,8 +336,8 @@ public class GestionarListaPedidos : MonoBehaviour
             aux = "INICIADO";
         }
         p.estado = aux;
-        string cad = await instanceMétodosApiController.PutDataAsync("pedido/cambiarEstado/",p);
-        Debug.Log("CAMBIO ESTADO"+cad);
+        string cad = await instanceMÃ©todosApiController.PutDataAsync("pedido/cambiarEstado/", p);
+        Debug.Log("CAMBIO ESTADO" + cad);
         Resultado resultado = JsonConvert.DeserializeObject<Resultado>(cad);
         if (resultado.Result.Equals(1))
         {
@@ -357,8 +357,8 @@ public class GestionarListaPedidos : MonoBehaviour
     public async Task eliminarPedido(int idP)
     {
         //ELIMINAR PEDIDO EN SERVER Y RECARGAR LISTA
-        //DEBERÍA HABER UN POP UP DE "SEGURO QUE LO QUIERES HACER?"
-        string cad = await instanceMétodosApiController.DeleteDataAsync("pedido/borrar/"+idP);
+        //DEBERï¿½A HABER UN POP UP DE "SEGURO QUE LO QUIERES HACER?"
+        string cad = await instanceMÃ©todosApiController.DeleteDataAsync("pedido/borrar/" + idP);
         Debug.Log(cad);
         Resultado resultado = JsonConvert.DeserializeObject<Resultado>(cad);
         if (resultado.Result.Equals(1))

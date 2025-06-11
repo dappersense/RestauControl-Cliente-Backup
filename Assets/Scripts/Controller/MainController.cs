@@ -26,6 +26,7 @@ public class MainController : MonoBehaviour
     [SerializeField] private Button botónEditarRestaurante;
     [SerializeField] private Button botónGestionarMesas;
     [SerializeField] private Button botónGestionarTrabajadores;
+    [SerializeField] private Button botónGestionarArticulos;
     [SerializeField] private RectTransform rtBotónIdiomaSpanish;
     [SerializeField] private RectTransform rtBotónIdiomaEnglish;
     [SerializeField] private RectTransform rtTextoIniciarSesión;
@@ -126,6 +127,7 @@ public class MainController : MonoBehaviour
                     botónEditarRestaurante.gameObject.SetActive(true);
                     botónGestionarMesas.gameObject.SetActive(true);
                     botónGestionarTrabajadores.gameObject.SetActive(true);
+                    botónGestionarArticulos.gameObject.SetActive(true);
                     break;
             }
         }
@@ -268,7 +270,10 @@ public class MainController : MonoBehaviour
     {
         SceneManager.LoadScene("Gestionar Trabajadores");
     }
-
+    public void IrALaEscenaGestionarArticulos()
+    {
+        SceneManager.LoadScene("Gestionar Articulos");
+    }
     public void CerrarSesión()
     {
         PlayerPrefs.SetInt("UsuarioRegistrado", 0);

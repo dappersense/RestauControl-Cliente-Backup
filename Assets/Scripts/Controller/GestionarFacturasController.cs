@@ -121,7 +121,17 @@ public class GestionarFacturasController : MonoBehaviour
             List<InstanciaArticulo> listaAux= JsonConvert.DeserializeObject<List<InstanciaArticulo>>(cad2);
             foreach (InstanciaArticulo art in listaAux)
             {
-                listaArt.Add(art);
+                //listaArt.Add(art);
+                bool existe = false;
+                foreach(InstanciaArticulo a in listaArt)
+                {
+                    if (a.idArticulo == art.idArticulo)
+                    {
+                        existe = true;
+                        a.cantidad = a.cantidad + art.cantidad;
+                    }
+                }
+                if (!existe) listaArt.Add(art);
             }
         }
         foreach(InstanciaArticulo a in listaArt)

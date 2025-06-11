@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gestionar Trabajadores.unity
     guid: 9441545d246a5ca4aa1d8311866ff2ab
+  - enabled: 1
+    path: Assets/Scenes/Gestionar Articulos.unity
+    guid: d9647fab7495d5145b150c1fdf1710cf
   m_configObjects: {}
