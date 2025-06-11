@@ -113,6 +113,8 @@ public class MainController : MonoBehaviour
 
     private void PonerBotonesFuncionalidadesProgramaSegunElRol()
     {
+        RectTransform rt = botónGestionarMesas.gameObject.GetComponent<RectTransform>();
+
         // Si el trabajador está en un restaurante, se comprueba el rol
         if (Usuario.Restaurante_ID > 0)
         {
@@ -120,11 +122,14 @@ public class MainController : MonoBehaviour
             {
                 case 1:
                     botónEditarRestaurante.gameObject.SetActive(false);
+                    rt.anchoredPosition = new Vector2(0, 0);
                     botónGestionarMesas.gameObject.SetActive(true);
                     botónGestionarTrabajadores.gameObject.SetActive(false);
+                    botónGestionarArticulos.gameObject.SetActive(false);
                     break;
                 case 2: // Si el trabajador tiene el rol de "Gerente", se muestran los botones específicos para editar el restaurante y para gestionar los trabajadores
                     botónEditarRestaurante.gameObject.SetActive(true);
+                    rt.anchoredPosition = new Vector2(0, 262);
                     botónGestionarMesas.gameObject.SetActive(true);
                     botónGestionarTrabajadores.gameObject.SetActive(true);
                     botónGestionarArticulos.gameObject.SetActive(true);
@@ -136,6 +141,7 @@ public class MainController : MonoBehaviour
             botónEditarRestaurante.gameObject.SetActive(false);
             botónGestionarMesas.gameObject.SetActive(false);
             botónGestionarTrabajadores.gameObject.SetActive(false);
+            botónGestionarArticulos.gameObject.SetActive(false);
         }
                   
     }
