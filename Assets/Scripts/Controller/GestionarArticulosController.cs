@@ -224,6 +224,7 @@ public class GestionarArticulosController : MonoBehaviour
             Debug.Log("Error al finalizar factura");
         }
         ventanaModificar.SetActive(false);
+        cargarLista();
     }
     public async Task modificarArticulo()
     {
@@ -244,6 +245,7 @@ public class GestionarArticulosController : MonoBehaviour
             Debug.Log("Error al finalizar factura");
         }
         ventanaModificar.SetActive(false);
+        cargarLista();
     }
     public async Task crearArticulo(Articulo a)
     {
