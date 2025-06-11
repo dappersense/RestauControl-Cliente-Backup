@@ -14,7 +14,6 @@ using System.Text.RegularExpressions;
 //SI ES POSIBLE, PANTALLA PARA AÑADIR ARTÍCULOS A LA BASE DE DATOS
 //IMÁGENES
 /*
- * 
  * Solo se muestra una imagen de articulos???
  * Cambiar categoría por un dropdown
 */

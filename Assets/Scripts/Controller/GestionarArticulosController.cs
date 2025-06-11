@@ -29,7 +29,7 @@ public class GestionarArticulosController : MonoBehaviour
     public MétodosAPIController instanceMétodosAPIController;
     public TMP_InputField setNombre;
     public TMP_InputField setPrecio;
-    public TMP_InputField setCategoria;
+    public TMP_Dropdown setCategoria;
     public TextMeshProUGUI AID;
     public TextMeshProUGUI tBoton;
     public Articulo articuloSeleccionado;
@@ -60,7 +60,7 @@ public class GestionarArticulosController : MonoBehaviour
         ventanaModificar.SetActive(false);
         setNombre.text = "";
         setPrecio.text = "";
-        setCategoria.text = "";
+        setCategoria.value = 0;
         AID.text = "";
         botonAdd.SetActive(false);
         botonModificar.SetActive(false);
@@ -77,7 +77,22 @@ public class GestionarArticulosController : MonoBehaviour
     {
         setNombre.text = ""+a.nombre;
         setPrecio.text = ""+a.precio;
-        setCategoria.text = ""+a.categoria;
+        if (a.categoria.ToUpper().Equals("ENTRANTES"))
+        {
+            setCategoria.value = 0;
+        }
+        if (a.categoria.ToUpper().Equals("PLATOS"))
+        {
+            setCategoria.value = 1;
+        }
+        if (a.categoria.ToUpper().Equals("BEBIDAS"))
+        {
+            setCategoria.value = 2;
+        }
+        else
+        {
+            setCategoria.value = 3;
+        }
         AID.text = "Articulo:"+a.id;
         articuloSeleccionado = a;
         imagenRAW.gameObject.SetActive(true);
@@ -194,7 +209,7 @@ public class GestionarArticulosController : MonoBehaviour
         int IDA = JsonConvert.DeserializeObject<int>(cad)+1;
         string nombre = setNombre.text;
         float precio = float.Parse(setPrecio.text);
-        string categoria=setCategoria.text;
+        string categoria = setCategoria.options[setCategoria.value].text;
         Articulo a = new Articulo(IDA, nombre, precio, categoria);
         string cad2 = await instanceMétodosAPIController.PostDataAsync("articulo/crearArticulo/",a);
         Debug.Log(cad2);
@@ -215,7 +230,7 @@ public class GestionarArticulosController : MonoBehaviour
         int IDA = articuloSeleccionado.id;
         string nombre = setNombre.text;
         float precio = float.Parse(setPrecio.text);
-        string categoria = setCategoria.text;
+        string categoria = setCategoria.options[setCategoria.value].text;
         Articulo a = new Articulo(IDA, nombre, precio, categoria);
         string cad = await instanceMétodosAPIController.PutDataAsync("articulo/modificar/", a);
         Debug.Log(cad);
