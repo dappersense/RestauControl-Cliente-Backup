@@ -14,14 +14,9 @@ using System.Text.RegularExpressions;
 //SI ES POSIBLE, PANTALLA PARA AÑADIR ARTÍCULOS A LA BASE DE DATOS
 //IMÁGENES
 /*
- * if (Usuario.Idioma.CompareTo("Español") == 0)
-        {
-            textReservasHoyMesa.text = "Registros Hoy Mesa " + ObtenerIDMesaDelMapa(botónMesaSelected);
-        }
-        else
-        {
-            textReservasHoyMesa.text = "Registrations Today Table " + ObtenerIDMesaDelMapa(botónMesaSelected);
-        }
+ * 
+ * Solo se muestra una imagen de articulos???
+ * Cambiar categoría por un dropdown
 */
 public class GestionarPedidosController : MonoBehaviour
 {

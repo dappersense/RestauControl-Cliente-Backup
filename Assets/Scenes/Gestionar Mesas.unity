@@ -54946,6 +54946,38 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: imprimirFactura
       objectReference: {fileID: 0}
+    - target: {fileID: 270783875397101897, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 270783875397101897, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 270783875397101897, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973817378278040069, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973817378278040069, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973817378278040069, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210192068687002783, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 136.9368
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210192068687002783, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 157.95
+      objectReference: {fileID: 0}
     - target: {fileID: 2493488847991798979, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -54969,6 +55001,18 @@ PrefabInstance:
     - target: {fileID: 2673385507076311592, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 301
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487286810072039449, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487286810072039449, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487286810072039449, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3908524423637186721, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
       propertyPath: m_fontStyle
@@ -55077,6 +55121,26 @@ PrefabInstance:
     - target: {fileID: 6595321499707458804, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6663226829194725823, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 286.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6663226829194725823, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000061997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610978294823563849, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610978294823563849, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7610978294823563849, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7610978294823563849, guid: 1b1984eb2a99afc43b6a8bc744e1ae52, type: 3}
       propertyPath: m_HorizontalAlignment

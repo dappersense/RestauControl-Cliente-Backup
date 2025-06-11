@@ -71,6 +71,7 @@ public class GestionarArticulosController : MonoBehaviour
         articuloSeleccionado = null;
         ventanaModificar.SetActive(true);
         botonAdd.SetActive(true);
+        imagenRAW.gameObject.SetActive(false);
     }
     public void abrirVentanaModificar(Articulo a)
     {
@@ -79,6 +80,7 @@ public class GestionarArticulosController : MonoBehaviour
         setCategoria.text = ""+a.categoria;
         AID.text = "Articulo:"+a.id;
         articuloSeleccionado = a;
+        imagenRAW.gameObject.SetActive(true);
         cargarImagen();
         ventanaModificar.SetActive(true);
         botonModificar.SetActive(true);
@@ -206,6 +208,7 @@ public class GestionarArticulosController : MonoBehaviour
         {
             Debug.Log("Error al finalizar factura");
         }
+        ventanaModificar.SetActive(false);
     }
     public async Task modificarArticulo()
     {
@@ -225,6 +228,7 @@ public class GestionarArticulosController : MonoBehaviour
         {
             Debug.Log("Error al finalizar factura");
         }
+        ventanaModificar.SetActive(false);
     }
     public async Task crearArticulo(Articulo a)
     {
@@ -298,5 +302,6 @@ public class GestionarArticulosController : MonoBehaviour
     public void subirImagen()
     {
         instanceImage.OpenFileAndUpload(articuloSeleccionado.id);
+        cargarImagenAux();
     }
 }

@@ -26,7 +26,7 @@ public class GestionarListaPedidos : MonoBehaviour
     public GestionarMesasController instanceGestionarMesasController;
     public TextMeshProUGUI selMesa;
     public TMP_InputField selMesaE;
-    public Transform espacio;
+    public RectTransform espacio;
     public Scrollbar scrollbarLista;
     public static GestionarListaPedidos InstanceGestionarListaPedidos { get; private set; }
     //Deber�a haber una barra de scroll para explorar los pedidos
@@ -73,6 +73,7 @@ public class GestionarListaPedidos : MonoBehaviour
                 i++;
             }
         }
+        //espacio.sizeDelta = new Vector2(1600, lista.Count * 150);
     }
     public async Task crearBotonesPedidos(string estado)
     {
@@ -191,7 +192,14 @@ public class GestionarListaPedidos : MonoBehaviour
             drop.options[3].text = "PAID";
             drop.options[4].text = "STARTED";
         }
-
+        else
+        {
+            drop.options[0].text = "APUNTADO";
+            drop.options[1].text = "ENCOCINA";
+            drop.options[2].text = "COMPLETADO";
+            drop.options[3].text = "PAGADO";
+            drop.options[4].text = "INICIADO";
+        }
 
         drop.onValueChanged.AddListener((_) =>
         {
