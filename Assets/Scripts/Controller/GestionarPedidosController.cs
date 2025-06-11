@@ -49,7 +49,6 @@ public class GestionarPedidosController : MonoBehaviour
     void Awake()
     {
         instanceMétodosApiController = MétodosAPIController.InstanceMétodosAPIController;
-        instanceImage = ImageManager.instanceImage;
     }
     void Start()
     {
