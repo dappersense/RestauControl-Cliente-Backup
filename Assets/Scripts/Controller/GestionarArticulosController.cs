@@ -30,16 +30,18 @@ public class GestionarArticulosController : MonoBehaviour
     public TMP_InputField setNombre;
     public TMP_InputField setPrecio;
     public TMP_InputField setCategoria;
-    public GameObject imagen;
     public TextMeshProUGUI AID;
     public TextMeshProUGUI tBoton;
     public Articulo articuloSeleccionado;
     public RawImage imagenRAW;
+    public Sprite imagenPrueba;
+    public ImageManager instanceImage;
     //public ImageDownloader instanceDownloader;
     void Start()
     {
         instanceMétodosAPIController = MétodosAPIController.InstanceMétodosAPIController;
         SceneManager.LoadSceneAsync("General Controller", LoadSceneMode.Additive);
+        instanceImage = ImageManager.instanceImage;
         //instanceDownloader=ImageDownloader.instanceDownloader;
         //instanceDownloader.DownloadImage();
         cargarLista();
@@ -66,6 +68,7 @@ public class GestionarArticulosController : MonoBehaviour
     }
     public void abrirVentanaAdd()
     {
+        articuloSeleccionado = null;
         ventanaModificar.SetActive(true);
         botonAdd.SetActive(true);
     }
@@ -74,8 +77,9 @@ public class GestionarArticulosController : MonoBehaviour
         setNombre.text = ""+a.nombre;
         setPrecio.text = ""+a.precio;
         setCategoria.text = ""+a.categoria;
-        AID.text = "Articulo "+a.id;
+        AID.text = "Articulo:"+a.id;
         articuloSeleccionado = a;
+        cargarImagen();
         ventanaModificar.SetActive(true);
         botonModificar.SetActive(true);
     }
@@ -196,6 +200,7 @@ public class GestionarArticulosController : MonoBehaviour
         if (resultado.Result.Equals(1))
         {
             Debug.Log("Estado cambiado correctamente");
+            articuloSeleccionado = null;
         }
         else
         {
@@ -268,5 +273,30 @@ public class GestionarArticulosController : MonoBehaviour
     {
         cargarLista(selNombre.text);
     }
-    
+
+    public void cargarImagen()
+    {
+        cargarImagenAux();
+    }
+    public async Task cargarImagenAux()
+    {
+        try
+        {
+            instanceImage.imageDisplay = imagenRAW;
+            string cad = await instanceMétodosAPIController.GetDataAsync("articulo/tieneImagen/"+articuloSeleccionado.id);
+            Debug.Log(cad);
+            bool resultado = JsonConvert.DeserializeObject<bool>(cad);
+            if (!resultado) throw new Exception("No tiene imagen");
+            instanceImage.DownloadImage(articuloSeleccionado.id);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("No se encuentra el artículo");
+            imagenRAW.texture = imagenPrueba.texture;
+        }
+    }
+    public void subirImagen()
+    {
+        instanceImage.OpenFileAndUpload(articuloSeleccionado.id);
+    }
 }

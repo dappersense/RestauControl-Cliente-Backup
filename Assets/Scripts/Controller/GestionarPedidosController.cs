@@ -44,10 +44,12 @@ public class GestionarPedidosController : MonoBehaviour
     public GameObject canvasPedidos;
     public RectTransform fondoArticulos;
     public GameObject baseP;
+    public ImageManager instanceImage;
 
     void Awake()
     {
         instanceMétodosApiController = MétodosAPIController.InstanceMétodosAPIController;
+        instanceImage = ImageManager.instanceImage;
     }
     void Start()
     {
@@ -55,6 +57,7 @@ public class GestionarPedidosController : MonoBehaviour
         {
             instanceGestionarPedidosController = this;
         }
+        instanceImage = ImageManager.instanceImage;
         instanceGestionarMesasController = GestionarMesasController.InstanceGestionarMesasController;
         instanceMétodosApiController = MétodosAPIController.InstanceMétodosAPIController;
         //CAMBIAR COMO OBTENER MESA
@@ -108,7 +111,7 @@ public class GestionarPedidosController : MonoBehaviour
 
     //Crear los botones con un for que vaya cambiando de posición. Separación de 30 píxeles +160 tanto para arriba como para abajo. Se empieza en -800 150 y se termina en 360 -280
     //Para coger el nombre del botón, usamos botón.gameObject.name y cogemos nombre.Split("-")[1] para obtener el id (se debe parsear con Int32)
-    public void crearBotonArticulo(Articulo art, int x, int y)
+    /*public void crearBotonArticulo(Articulo art, int x, int y)
     {
         GameObject boton = new GameObject("Articulo-" + art.id);
         boton.transform.SetParent(fondoPedidos);
@@ -131,8 +134,54 @@ public class GestionarPedidosController : MonoBehaviour
 
         Button mod = boton.AddComponent<Button>();
         mod.onClick.AddListener(() => addArticulo(art.id));
+    }*/
+    public void crearBotonArticulo(Articulo art, int x, int y)
+    {
+        GameObject boton = new GameObject("Articulo-" + art.id);
+        boton.transform.SetParent(fondoPedidos);
+        RectTransform rt = boton.AddComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(160, 160);
+        rt.anchoredPosition = new Vector2(x, y);
+        boton.AddComponent<CanvasRenderer>();
+
+        RawImage imagen = boton.AddComponent<RawImage>();
+        asignarImagen(art, imagen);
+
+        GameObject textObject = new GameObject("TextoBotón");
+        textObject.transform.SetParent(rt);
+        TextMeshProUGUI textMeshPro = textObject.AddComponent<TextMeshProUGUI>();
+        textMeshPro.fontSize = 30;
+        textMeshPro.alignment = TextAlignmentOptions.Center;
+        textMeshPro.color = Color.black;
+        textMeshPro.text = art.nombre;
+        textObject.transform.localPosition = new Vector2(0, -100);
+
+        Button mod = boton.AddComponent<Button>();
+        mod.onClick.AddListener(() => addArticulo(art.id));
     }
 
+    public async Task asignarImagen(Articulo a,RawImage imagenRAW)
+    {
+        Debug.Log(a.id);
+        try
+        {
+            Debug.Log("id:"+a.id);
+            Debug.Log(imagenRAW);
+            instanceImage.imageDisplay = imagenRAW;
+            Debug.Log("articulo/tieneImagen/" + a.id);
+            string cad = await instanceMétodosApiController.GetDataAsync("articulo/tieneImagen/" + a.id);
+            Debug.Log("Cadena imagen:"+cad);
+            bool resultado = JsonConvert.DeserializeObject<bool>(cad);
+            if (!resultado) throw new Exception("No tiene imagen");
+            instanceImage.DownloadImage(a.id);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+            Debug.Log("No se encuentra el artículo");
+            imagenRAW.texture = imagenPrueba.texture;
+        }
+    }
 
     public async void crearBotonesCategoria(string s)
     {

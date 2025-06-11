@@ -10,14 +10,18 @@ public class ImageManager : MonoBehaviour
     public RawImage imageDisplay;
     public Button uploadButton;
     public Button downloadButton;
-    public string uploadUrl = "https://localhost:7233/articulo/upload";
+    public string uploadUrl = "https://localhost:7233/articulo/upload/";
     public string downloadUrl = "https://localhost:7233/articulo/image/";
+    public static ImageManager instanceImage;
 
     private void Start()
     {
-        downloadButton.onClick.AddListener(DownloadImage);
+        
     }
-
+    private void Awake()
+    {
+        instanceImage = this;
+    }
     public void OpenFileAndUpload(int i)
     {
 #if UNITY_STANDALONE || UNITY_EDITOR
@@ -72,16 +76,17 @@ public class ImageManager : MonoBehaviour
             Debug.Log("Imagen subida correctamente al artículo");
     }
 
-    public void DownloadImage()
+    public void DownloadImage(int i)
     {
-        StartCoroutine(DownloadCoroutine());
+        StartCoroutine(DownloadCoroutine(i));
     }
 
-    private IEnumerator DownloadCoroutine()
+    private IEnumerator DownloadCoroutine(int i)
     {
-        using UnityWebRequest www = UnityWebRequestTexture.GetTexture(downloadUrl);
+        Debug.Log("Iniciamos");
+        using UnityWebRequest www = UnityWebRequestTexture.GetTexture(downloadUrl+i);
         yield return www.SendWebRequest();
-
+        Debug.Log("WebRequest");
         if (www.result == UnityWebRequest.Result.Success)
         {
             Texture2D texture = DownloadHandlerTexture.GetContent(www);

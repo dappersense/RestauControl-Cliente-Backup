@@ -10935,6 +10935,7 @@ Transform:
   - {fileID: 1218439650}
   - {fileID: 1732657802}
   - {fileID: 1884962858}
+  - {fileID: 1879340945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &320412440
@@ -31605,6 +31606,10 @@ PrefabInstance:
       propertyPath: canvasPedidos
       value: 
       objectReference: {fileID: 1006858244}
+    - target: {fileID: 1876639806129514024, guid: 306856bcf698924408657f7e434525f4, type: 3}
+      propertyPath: instanceImage
+      value: 
+      objectReference: {fileID: 1879340946}
     - target: {fileID: 1876639806129514024, guid: 306856bcf698924408657f7e434525f4, type: 3}
       propertyPath: canvasFacturas
       value: 
@@ -55365,6 +55370,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874347221}
   m_CullTransparentMesh: 1
+--- !u!1 &1879340944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879340945}
+  - component: {fileID: 1879340946}
+  m_Layer: 0
+  m_Name: GestionarImagenes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1879340945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879340944}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -69.124756, y: -83.53247, z: -6.437187}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 314356862}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879340946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879340944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f869733f355adf94f83aa6502ee6f112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageDisplay: {fileID: 0}
+  uploadButton: {fileID: 0}
+  downloadButton: {fileID: 0}
+  uploadUrl: https://localhost:7233/articulo/upload/
+  downloadUrl: https://localhost:7233/articulo/image/
 --- !u!1001 &1884962857
 PrefabInstance:
   m_ObjectHideFlags: 0
