@@ -81,7 +81,7 @@ public class GestionarFacturasController : MonoBehaviour
         Debug.Log("cadena:"+cad);
         factura = JsonConvert.DeserializeObject<Factura>(cad);
         Debug.Log(factura);
-        mostrarDatosFactura();
+        await mostrarDatosFacturaAsync();
         //mostrarDatosFactura();
     }
 
@@ -103,7 +103,7 @@ public class GestionarFacturasController : MonoBehaviour
         RestauranteTexto.text = RestauranteTexto.text + cad2;
     }
 
-    public async Task mostrarDatosFactura()
+    public async Task mostrarDatosFacturaAsync()
     {
         //En caso de pedir una misma cosa en varios pedidos (p.ej, una coca cola al inicio de la sesión y luego otra) se mostrarán como artículos diferentes. Se debería cambiar esto luego.
         string cad = await instanceMétodosApiController.GetDataAsync("factura/getPedidos/" + factura.id);

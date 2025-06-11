@@ -25770,9 +25770,9 @@ MonoBehaviour:
   "rtBot\xF3nIdiomaEnglish": {fileID: 1090970004}
   "rtTextoIniciarSesi\xF3n": {fileID: 1417826609}
   "canvasV\xEDdeoTutorialApp": {fileID: 1002093847}
-  videoClipEmpleado: {fileID: 32900000, guid: f7a3d790bb2c23942b4debebe9147f1e, type: 3}
-  videoClipGerente: {fileID: 32900000, guid: 7484d0fc79a14fa43ae1b4a31ed732b0, type: 3}
-  videoClipGerenteUnaVezCreadoElRestaurante: {fileID: 32900000, guid: cdf91a857d1474143ab4a4d256e22dac, type: 3}
+  videoClipEmpleado: {fileID: 32900000, guid: 86e02e592f9101c449f0605c9f0bdfa9, type: 3}
+  videoClipGerente: {fileID: 32900000, guid: c7e55f494e81d6e419f08a4b429956dd, type: 3}
+  videoClipGerenteUnaVezCreadoElRestaurante: {fileID: 32900000, guid: 3d5b169d982f24b40a4a398fd1e517e9, type: 3}
   imgBtnOnYPausa: {fileID: 1277829252}
   imgPausa: {fileID: 21300000, guid: f18a5cb589e476044a48a54fb5cb5ae0, type: 3}
   imgPlay: {fileID: 21300000, guid: e1adc052f27685545b02e5c390696401, type: 3}
