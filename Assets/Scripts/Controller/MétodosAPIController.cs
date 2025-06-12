@@ -12,8 +12,8 @@ public class MétodosAPIController : MonoBehaviour
 {
 
     private bool mostrandoImgNoConexión = false;
-    private static string URL = "https://localhost:7233/"; //https://localhost:7233/
-    //private static string URL = "https://servidorapirestaurante-production.up.railway.app/";
+    public static string URL = "http://localhost:7233/"; //https://localhost:7233/
+    //public static string URL = "https://servidorapirestaurante-production.up.railway.app/";
     GeneralController instanceGeneralController;
 
     public static MétodosAPIController InstanceMétodosAPIController { get; private set; }

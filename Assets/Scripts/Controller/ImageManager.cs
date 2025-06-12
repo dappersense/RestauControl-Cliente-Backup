@@ -12,6 +12,8 @@ public class ImageManager : MonoBehaviour
     public Button downloadButton;
     public string uploadUrl = "https://localhost:7233/articulo/upload/";
     public string downloadUrl = "https://localhost:7233/articulo/image/";
+    //public string uploadUrl = "https://servidorapirestaurante-production.up.railway.app/articulo/upload/";
+    //public string downloadUrl = "https://servidorapirestaurante-production.up.railway.app/articulo/image/";
     public static ImageManager instanceImage;
 
     private void Start()
@@ -67,6 +69,7 @@ public class ImageManager : MonoBehaviour
         form.AddBinaryData("file", imageData, Path.GetFileName(filePath), "image/jpeg");
 
         string url = $"https://localhost:7233/articulo/{articuloId}/actualizar-imagen";
+        //string url = $"https://servidorapirestaurante-production.up.railway.app/articulo/{articuloId}/actualizar-imagen";
         using UnityWebRequest www = UnityWebRequest.Post(url, form);
         yield return www.SendWebRequest();
 
@@ -95,7 +98,31 @@ public class ImageManager : MonoBehaviour
         else
         {
             Debug.LogError("Failed to download image: " + www.error);
+            Debug.Log("Error: " + www.error);
+            Debug.Log("Response code: " + www.responseCode);
         }
     }
+
+    /*private IEnumerator DownloadCoroutine(int i, RawImage raw)
+    {
+        string fullUrl = downloadUrl + i;
+        Debug.Log("Intentando descargar: " + fullUrl);
+
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(fullUrl);
+        www.SetRequestHeader("User-Agent", "UnityWebRequest");
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            Texture2D texture = DownloadHandlerTexture.GetContent(www);
+            raw.texture = texture;
+            Debug.Log("Imagen descargada correctamente");
+        }
+        else
+        {
+            Debug.LogError($"Error al descargar imagen: {www.error} (Código: {www.responseCode})");
+        }
+    }*/
 
 }
